@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/static/css/main.10ebae73.chunk.css",
+    "main.js": "/static/js/main.8407792b.chunk.js",
+    "main.js.map": "/static/js/main.8407792b.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.783779e9.js",
+    "runtime-main.js.map": "/static/js/runtime-main.783779e9.js.map",
+    "static/css/2.17e5ed98.chunk.css": "/static/css/2.17e5ed98.chunk.css",
+    "static/js/2.daf4448c.chunk.js": "/static/js/2.daf4448c.chunk.js",
+    "static/js/2.daf4448c.chunk.js.map": "/static/js/2.daf4448c.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.5ff4ac15b95456db423975c554982fdc.js": "/precache-manifest.5ff4ac15b95456db423975c554982fdc.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.17e5ed98.chunk.css.map": "/static/css/2.17e5ed98.chunk.css.map",
+    "static/css/main.10ebae73.chunk.css.map": "/static/css/main.10ebae73.chunk.css.map",
+    "static/js/2.daf4448c.chunk.js.LICENSE": "/static/js/2.daf4448c.chunk.js.LICENSE",
+    "static/media/description3-side.jpeg": "/static/media/description3-side.9d4b1ad4.jpeg",
+    "static/media/descriptions1.jpg": "/static/media/descriptions1.4df49f2f.jpg",
+    "static/media/home.scss": "/static/media/newsofa.622eb94e.jpg",
+    "static/media/headphones.jpg": "/static/media/headphones.52f7effb.jpg",
+    "static/media/logo.png": "/static/media/logo.ec28f33e.png",
+    "static/media/shopping.webp": "/static/media/shopping.143b934c.webp",
+    "static/media/user2.jpeg": "/static/media/user2.01075387.jpeg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.783779e9.js",
+    "static/css/2.17e5ed98.chunk.css",
+    "static/js/2.daf4448c.chunk.js",
+    "static/css/main.10ebae73.chunk.css",
+    "static/js/main.8407792b.chunk.js"
+  ]
+}
