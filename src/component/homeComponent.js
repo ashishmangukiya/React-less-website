@@ -7,170 +7,72 @@ import user2 from "../assets/user2.jpeg";
 import menu from "../assets/menu.png";
 import description3 from "../assets/description3-side.jpeg";
 import './home.scss'
-import $ from 'jquery';
+import SideBar from './sidebar';
+import SidePanel from './sidePanel';
 
 export default class Home extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			tagName: 'DETAILS'
+			tagName: 'DETAILS',
+			active_link1: 'active-link',
+			active_link2: '',
+			active_link3: '',
+			active_link4: '',
+			animation1: '',
+			animation2: ''
 		}
+		this.setHeader = this.setHeader.bind(this)
 	}
+	componentDidMount() {
+		window.addEventListener('scroll', this.handleScroll, true);
+	}
+
+	handleScroll = () => {
+		if (window.scrollY + this.header.clientHeight < this.one.clientHeight + this.one.offsetTop) {
+			this.changeTagName('Details')
+			this.setState({ active_link1: 'active-link', active_link2: '', active_link3: '', active_link4: '' })
+		} else if (window.scrollY + this.header.clientHeight < this.two.clientHeight + this.two.offsetTop) {
+			this.changeTagName('Descriptions')
+			this.setState({ active_link1: '', active_link2: 'active-link', active_link3: '', active_link4: '' })
+		} else if (window.scrollY + this.header.clientHeight < this.three.clientHeight + this.three.offsetTop) {
+			this.setState({ animation1: 'description-2-active' })
+		} else if (window.scrollY + this.header.clientHeight < this.four.clientHeight + this.four.offsetTop) {
+			this.setState({ animation2: 'description-3-active' })
+		} else if (window.scrollY + this.header.clientHeight < this.five.clientHeight + this.five.offsetTop) {
+			this.setState({ active_link1: '', active_link2: '', active_link3: 'active-link', active_link4: '' })
+			this.changeTagName('Reviews')
+		} else if (window.scrollY + this.header.clientHeight < this.six.clientHeight + this.six.offsetTop) {
+			this.changeTagName('Related')
+			this.setState({ active_link1: '', active_link2: '', active_link3: '', active_link4: 'active-link' })
+		}
+	};
+
 	changeTagName(name) {
 		this.setState({ tagName: name })
 	}
-	componentDidMount() {
-		$(window).scroll((event) => {
-			var header = $('.nav-fixed').outerHeight();
-			if (!($(window).scrollTop() + header >= $("#1").offset().top + $("#1").height() || $(window).scrollTop() + header < $("#1").offset().top)) {
-				$("a").removeClass('active-link');
-				$(".link1").addClass('active-link');
-				this.changeTagName('Details')
-			} else if (!($(window).scrollTop() + header >= $("#2").offset().top + $("#2").height() || $(window).scrollTop() + header < $("#2").offset().top)) {
-				$("a").removeClass('active-link');
-				$(".link2").addClass('active-link');
-				this.changeTagName('Descriptions')
-			} else if (!($(window).scrollTop() + header >= $("#3").offset().top + $("#3").height() || $(window).scrollTop() + header < $("#3").offset().top)) {
-				$('#3').addClass('description-2-active');
-			} else if (!($(window).scrollTop() + header >= $("#4").offset().top + $("#4").height() || $(window).scrollTop() + header < $("#4").offset().top)) {
-				$('#4').addClass('description-3-active');
-			} else if (!($(window).scrollTop() + header >= $("#5").offset().top + $("#5").height() || $(window).scrollTop() + header < $("#5").offset().top)) {
-				$("a").removeClass('active-link');
-				$(".link3").addClass('active-link');
-				this.changeTagName('Reviews')
-			} else if (!($(window).scrollTop() + header >= $("#6").offset().top + $("#6").height() || $(window).scrollTop() + header < $("#6").offset().top)) {
-				$("a").removeClass('active-link');
-				$(".link4").addClass('active-link');
-				this.changeTagName('Related')
-			}
-		});
+
+	setHeader(ref) {
+		this.header = ref
 	}
 
 	render() {
 		return (
 			<div className="container-fluid">
 				<div className="header">
-					<div className="nav-fixed">
-						<div className="header-sub">
-							<div className="row remove-margin">
-								<div className="col-6 col-lg-3 col-xl-2 remove-padding">
-									<img alt="" src={menu} data-toggle="collapse" data-target="#demo" className="menu-style" />
-									<img alt="" src={logo} className="logo-style" />
-								</div>
-								<div className="col-6 col-lg-9 col-xl-10 remove-padding center">
-									<div className="tabs">
-										<div className="link">
-											BEDROOM
-										</div>
-										<div className="link">
-											LIVING ROOM
-										</div>
-										<div className="link">
-											OFFICE
-										</div>
-										<div className="link">
-											KITCHEN
-										</div>
-										<div className="link">
-											BATHROOM
-										</div>
-									</div>
-									<div className="flex notification">
-										<div>
-											<i className="fa fa-search"></i>
-										</div>
-										<div>
-											<i className="fa fa-heart"></i>
-										</div>
-										<div className="nodge flex">
-											<i className="fa fa-save"></i>
-											<sup >2</sup>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div id="demo" className="collapse">
-								<div className="tabs1">
-									<div className="link">
-										BEDROOM
-										</div>
-									<div className="link">
-										LIVING ROOM
-										</div>
-									<div className="link">
-										OFFICE
-										</div>
-									<div className="link">
-										KITCHEN
-										</div>
-									<div className="link">
-										BATHROOM
-										</div>
-								</div>
-							</div>
-						</div>
-						<hr className="remove-margin white"></hr>
-						<div className="row remove-margin">
-							<div className="col-lg-12 d-none d-lg-block d-xl-block remove-padding">
-								<div className="routes flex">
-									<i className="fa fa-home home "></i>
-									<i className="fa fa-caret-right caret padding-short"></i>
-									<div className="routes-link padding-short">CATALOG</div>
-									<i className="fa fa-caret-right caret padding-short"></i>
-									<div className="routes-link padding-short">SOFAS</div>
-									<i className="fa fa-caret-right caret padding-short"></i>
-									<div className="routes-link active padding-short">BEIGE NUDIE SOFA</div>
-								</div>
-							</div>
-							<div className="col-12 d-lg-none d-xl-none remove-padding">
-								<div className="tabs3 flex-center">
-									<div className="link">
-										<a className="nav-items link1 active-link" href="#1" >DETAILS</a>
-									</div>
-									<div className="link ">
-										<a className="nav-items link2" href="#2">DESCRIPTIONS</a>
-									</div>
-									<div className="link ">
-										<a className="nav-items link3" href="#5">REVIEWS</a>
-									</div>
-									<div className="link ">
-										<a className="nav-items link4" href="#6">RELATED</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					<SideBar
+						header={this.setHeader}
+						state={this.state}
+					/>
 					<div >
 						<div className="row remove-margin" >
-							<div className="d-none col-lg-3 col-xl-3 d-lg-block d-xl-block remove-padding"  >
-								<div className="fixed-side-panel" >
-									<div className="rotate" >
-										{this.state.tagName.toLowerCase()}
-									</div>
-									<div className="padding-top-box" >
-										<div className="padding-big">
-											<a className="nav-items side-links link1 active-link" href="#1">DETAILS</a>
-										</div>
-										<div className="padding-big">
-											<a className="nav-items link2 side-links" href="#2">DESCRIPTIONS</a>
-										</div>
-										<div className="padding-big">
-											<a className="nav-items link3 side-links" href="#5">REVIEWS</a>
-										</div>
-										<div className="padding-big">
-											<a className="nav-items link4 side-links" href="#6">RELATED</a>
-										</div>
-										<div className="flex-wrap padding-icons">
-											<i className="fa fa-facebook medium-font padding"></i>
-											<i className="fa fa-twitter medium-font padding"></i>
-											<i className="fa fa-bullseye medium-font padding"></i>
-										</div>
-									</div>
-								</div>
-							</div>
+							<SidePanel
+								tagName={this.state.tagName}
+								state={this.state}
+							/>
 							<div className="col-lg-9 col-xl-9 remove-padding" >
 								<div >
-									<div className="padding-left" id="1">
+									<div className="padding-left" ref={(one) => { this.one = one }} id="1">
 										<div className="Details-header ">
 											<div className="row remove-margin">
 												<div className="col-12 col-sm-6 remove-padding">
@@ -242,7 +144,7 @@ export default class Home extends React.Component {
 											</div>
 										</div>
 									</div>
-									<div className="description-1" id="2">
+									<div className="description-1" ref={(two) => { this.two = two }} id="2">
 										<div className="description-background">
 											<div className="row remove-margin">
 												<div className="col-12 col-sm-3 col-md-3 col-xl-5 remove-padding" >
@@ -260,7 +162,7 @@ export default class Home extends React.Component {
 											</div>
 										</div>
 									</div>
-									<div className="description-2" id="3">
+									<div className={`description-2 ${this.state.animation1}`} ref={(three) => { this.three = three }} id="3">
 										<div className="description-2-background">
 											<div className="row remove-margin">
 												<div className="col-12 remove-padding" >
@@ -282,7 +184,7 @@ export default class Home extends React.Component {
 											</div>
 										</div>
 									</div>
-									<div className="description-3" id="4">
+									<div className={`description-3 ${this.state.animation2}`} ref={(four) => { this.four = four }} id="4">
 										<div className="row remove-margin">
 											<div className="col-12 remove-padding" >
 												<div className="description-3-image">
@@ -300,7 +202,7 @@ export default class Home extends React.Component {
 											</div>
 										</div>
 									</div>
-									<div className="reviews" id="5">
+									<div className="reviews" ref={(five) => { this.five = five }} id="5">
 										<div className="row remove-margin ">
 											<div className="col-12 remove-padding">
 												<div className="review-header">
@@ -380,7 +282,7 @@ export default class Home extends React.Component {
 											</div>
 										</div>
 									</div>
-									<div className="related-product" id="6">
+									<div className="related-product" ref={(six) => { this.six = six }} id="6">
 										<div className="related-product-header">
 											Related products
 											</div>
